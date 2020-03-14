@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  rtmp:
+    image: jasonrivers/nginx-rtmp
+    volumes:
+    - type: bind
+      source: ./nginx.conf
+      target: /opt/nginx/conf/nginx.conf
+    ports:
+    - "1935:1935"
+    - "8080:8080"
+    links:
+    - stunnel
+  stunnel:
+    build: stunnel
